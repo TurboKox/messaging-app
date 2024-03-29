@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const nano = require('nano')(`http://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@localhost:5984`)
+const nano = require('nano')(`http://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@127.0.0.1:5984`)
 const colors = require('colors')
 const bodyParser = require('body-parser')
 
