@@ -1,51 +1,107 @@
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#parent {
+    background-color: #242526;
+}
+
 .czatOrazMenu{
     display: flex;
+    justify-content: center;
 }
+
 .calyCzat{
     border: 1px solid black;
     float: left;
-    width: 90%;
+    width: 70%;
 }
+
 .menu{
     border: 1px solid black;
+    border-left: none !important;
     float: right;
-    width: 10%;
+    width: 15%;
 }
+
 h2{
     text-align: center;
 }
+
 .divProfilowe{
     display: flex;
     justify-content: center;
     height: 100px;
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
 }
+
 .poczatekKonwersacji{
     text-align: center;
     color: gray;
-    font-size: 12px;
+    font-size: 16px;
 }
+
 .konwersacja{
     overflow-y: scroll;
-    height: 400px;
+    height: 550px;
 }
+
+/* width */
+.konwersacja::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  .konwersacja::-webkit-scrollbar-track {
+    background: #656464;
+  }
+   
+  /* Handle */
+  .konwersacja::-webkit-scrollbar-thumb {
+    background: #909090; 
+  }
+  
+  /* Handle on hover */
+  .konwersacja::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1; 
+  }
+
 .wpisanieWiadomosci{
-    text-align: center;
-    padding: 10px;
+    display: flex;
+    padding: 20px;
     width: 90%;
+    align-items: center;
+    justify-content: center;
 }
+
 .wpisanieWiadomosci #wiadomosc{
     height: 50px;
     width: 600px;
     font-size: 20px;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 4px solid black;
 }
+
+.wpisanieWiadomosci #wiadomosc:focus{
+    outline: none;
+}
+
 .wpisanieWiadomosci #wyslij{
     width: 0; 
     height: 0;
-    border-top: 18px solid transparent;
-    border-bottom: 18px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
     
     border-right: none;
     background-color: #d7d7d7;
-    border-left: 25px solid blue;
+    border-left: 25px solid #0075ff;
     margin-left: 10px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.wpisanieWiadomosci #wyslij:hover{
+    border-left: 25px solid #1186ee;
 }
