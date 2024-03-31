@@ -1,0 +1,41 @@
+#tekstWiadomosci1 {
+    background-color: #0075ff;
+    padding-left: 20px;
+    width: 300px;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 5px 7px 7px 0px rgba(66, 68, 90, 1);
+}
+
+#tekstWiadomosci2 {
+    background-color: white;
+    color: #0075ff;
+    padding-left: 20px;
+    width: 300px;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 5px 7px 7px 0px rgba(66, 68, 90, 1);
+}
+
+#wiadomosc1 {
+    display: flex;
+    height: 40px;
+    float: right;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
+#wiadomosc2 {
+    display: flex;
+    height: 40px;
+    float: left;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 50px;
+}
+
+svg {
+    cursor: pointer;
+}

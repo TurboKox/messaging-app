@@ -81,7 +81,7 @@ h2{
     font-size: 20px;
     padding-left: 15px;
     border-radius: 5px;
-    border: 4px solid black;
+    border: 3px solid black;
 }
 
 .wpisanieWiadomosci #wiadomosc:focus{
@@ -104,4 +104,9 @@ h2{
 
 .wpisanieWiadomosci #wyslij:hover{
     border-left: 25px solid #1186ee;
+}
+
+#resztaKonwersacji {
+    display: flex;
+    flex-direction: column;
 }

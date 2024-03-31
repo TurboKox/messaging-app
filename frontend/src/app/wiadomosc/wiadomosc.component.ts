@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Wiadomosc } from './wiadomosc.model';
 
 @Component({
   selector: 'app-wiadomosc',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './wiadomosc.component.css'
 })
 export class WiadomoscComponent {
-
+  @Input() message: Wiadomosc
 }

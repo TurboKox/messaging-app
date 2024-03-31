@@ -8,7 +8,9 @@
         <div class="konwersacja">
             <div class="poczatekKonwersacji">
                 <p>To jest początek tej konwersacji</p>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+            <div id="resztaKonwersacji" *ngFor="let wiadomosc of wiadomosci">
+                <app-wiadomosc [message]="wiadomosc"></app-wiadomosc>
             </div>
         </div>
     </div>
@@ -17,8 +19,10 @@
     </div>
 </div>
 
-<div class="wpisanieWiadomosci">
-    <input type="text" name="wiadomosc" id="wiadomosc" placeholder="Wpisz wiadomość...">
-    <button type="submit" id="wyslij"></button>
-</div>
+<form method="post" action="/api/dodaj" (submit)="dodajWiadomosc()">
+    <div class="wpisanieWiadomosci">
+        <input type="text" name="tresc_wiadomosci" id="wiadomosc" placeholder="Wpisz wiadomość...">
+        <button type="submit" id="wyslij"></button>
+    </div>
+</form>
 
