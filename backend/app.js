@@ -14,13 +14,25 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+
 const DB = nano.use(DB_NAME)
 
-app.post('/api/dodaj', (req, res) => {
+app.get('/api/v1/konwersacja', (req, res) => {
+  DB.list({include_docs: true}, (error, dane) => {
+    if(error) {
+      res.status(500).json({error: `Internal Server Error: ${error.message}`})
+      return
+    }
+
+    const wszystkieDokumenty = dane.rows.map(wiersz => wiersz.doc)
+    res.status(200).json(wszystkieDokumenty)
+  })
+})
+app.post('/api/v1/dodaj', (req, res) => {
   var obecna_data = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0');
-  var yyyy = today.getFullYear();
+  var dd = String(obecna_data.getDate()).padStart(2, '0');
+  var mm = String(obecna_data.getMonth() + 1).padStart(2, '0');
+  var yyyy = obecna_data.getFullYear();
   obecna_data = mm + '/' + dd + '/' + yyyy;
 
   const dokument = {

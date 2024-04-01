@@ -1,6 +1,6 @@
 export interface Wiadomosc {
-    _id: string;
-    _rev: string;
+    _id?: string;
+    _rev?: string;
     
     tresc_wiadomosci: string;
     data_wyslania_wiadomosci: string;

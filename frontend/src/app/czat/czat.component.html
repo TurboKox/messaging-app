@@ -19,9 +19,9 @@
     </div>
 </div>
 
-<form method="post" action="/api/dodaj" (submit)="dodajWiadomosc()">
+<form (submit)="dodajWiadomosc()" >
     <div class="wpisanieWiadomosci">
-        <input type="text" name="tresc_wiadomosci" id="wiadomosc" placeholder="Wpisz wiadomość...">
+        <input type="text" name="tresc_wiadomosci" id="wiadomosc" [(ngModel)]="nowaWiadomosc.tresc_wiadomosci" placeholder="Wpisz wiadomość...">
         <button type="submit" id="wyslij"></button>
     </div>
 </form>
