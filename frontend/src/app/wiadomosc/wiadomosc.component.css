@@ -24,18 +24,58 @@
     float: right;
     align-items: center;
     margin-right: 10px;
-    margin-bottom: 50px;
+    /* margin-bottom: 10px; */
 }
 
 #wiadomosc2 {
     display: flex;
-    height: 40px;
-    float: left;
+    height: 40px;    
     align-items: center;
+    /* margin-bottom: 50px; */
     margin-left: 30px;
-    margin-bottom: 50px;
 }
 
 svg {
+    cursor: pointer;
+}
+
+#parent1 {
+    position: relative;
+    display: flex;
+    float: right;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#parent2 {
+    display: flex;
+    float: left;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#dataWyslania1 {
+    width: 320px;
+    text-align: right;
+}
+
+#dataWyslania2 {
+    text-align: right;
+}
+
+.content {
+    z-index: 2000000;
+    position: absolute;
+    top: -80px;
+    right: 350px;
+    padding: 18px 18px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+i {
+    font-size: 22px;
+    margin-left: 10px;
+    color: black;
     cursor: pointer;
 }

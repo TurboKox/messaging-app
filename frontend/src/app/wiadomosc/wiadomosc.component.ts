@@ -8,4 +8,12 @@ import { Wiadomosc } from './wiadomosc.model';
 })
 export class WiadomoscComponent {
   @Input() message: Wiadomosc
+
+  otwarteMenu: boolean = false;
+
+  toggleMenu() {
+    this.otwarteMenu = !this.otwarteMenu;
+    console.log(this.otwarteMenu);
+    
+  }
 }

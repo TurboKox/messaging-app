@@ -21,8 +21,19 @@ export class CzatComponent {
   constructor(private mojaUsluga: APIService) {}
 
   dodajWiadomosc() {
+    var obecna_data = new Date();
+    var m = String(obecna_data.getMinutes());
+    var h = String(obecna_data.getHours());
+    var dd = String(obecna_data.getDate()).padStart(2, '0');
+    var mm = String(obecna_data.getMonth() + 1).padStart(2, '0');
+    var yyyy = obecna_data.getFullYear();
+    var obecna_data_str = h + ":" + m + " " + mm + '/' + dd + '/' + yyyy;
+    
+    this.nowaWiadomosc.data_wyslania_wiadomosci = obecna_data_str;
+
     this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc).subscribe(
       (res: any) => {
+
         this.wiadomosci.push({...this.nowaWiadomosc})
         console.log('Dodano wiadomosc: ', res)
       },

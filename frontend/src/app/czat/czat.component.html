@@ -4,7 +4,7 @@
         <div class="divProfilowe">
             <img src="/assets/img/zdjecie_profilowe.png" alt="Zdjęcie profilowe">
         </div>
-        <!-- <hr> -->
+
         <div class="konwersacja">
             <div class="poczatekKonwersacji">
                 <p>To jest początek tej konwersacji</p>
@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<form (submit)="dodajWiadomosc()" >
+<form (submit)="dodajWiadomosc()">
     <div class="wpisanieWiadomosci">
         <input type="text" name="tresc_wiadomosci" id="wiadomosc" [(ngModel)]="nowaWiadomosc.tresc_wiadomosci" placeholder="Wpisz wiadomość...">
         <button type="submit" id="wyslij"></button>

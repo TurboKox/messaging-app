@@ -29,18 +29,13 @@ app.get('/api/v1/konwersacja', (req, res) => {
   })
 })
 app.post('/api/v1/dodaj', (req, res) => {
-  var obecna_data = new Date();
-  var dd = String(obecna_data.getDate()).padStart(2, '0');
-  var mm = String(obecna_data.getMonth() + 1).padStart(2, '0');
-  var yyyy = obecna_data.getFullYear();
-  obecna_data = mm + '/' + dd + '/' + yyyy;
 
   const dokument = {
     tresc_wiadomosci: req.body.tresc_wiadomosci,
-    data_wyslania_wiadomosci: obecna_data,
+    data_wyslania_wiadomosci: req.body.data_wyslania_wiadomosci,
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
-    nazwa_uzytkownika: "user1"
+    nazwa_uzytkownika: req.body.nazwa_uzytkownika
   }
   
   DB.insert(dokument, (err, body) => {
@@ -49,7 +44,7 @@ app.post('/api/v1/dodaj', (req, res) => {
       return
     }
     
-    console.log(`Dodano książkę ${dokument.tytul}`.green)
+    console.log(`Dodano wiadomosc ${dokument.tytul}`.green)
     res.status(200).json({message: 'Dokument dodany'})
   })
 })
