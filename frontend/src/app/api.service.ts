@@ -22,11 +22,16 @@ export class APIService {
   getAllWiadomosci() :Observable<Wiadomosc[]> {
     return this.http.get<Wiadomosc[]>(`${API_URL}/konwersacja`, {headers: mojeNaglowkiHTTP})
   } 
+  
   addNewWiadomosc(wiadomosc: Wiadomosc): Observable<Object> {
     return this.http.post<Wiadomosc>(`${API_URL}/dodaj`, wiadomosc, {headers: mojeNaglowkiHTTP})
   }
 
-  deleteWiadomosc(id :string, rev :string) :Observable<Object> {
+  deleteWiadomosc(id: string, rev: string) :Observable<Object> {
     return this.http.delete(`${API_URL}/usun/${id}/${rev}`, {headers: mojeNaglowkiHTTP})
+  }
+
+  updateWiadomosc(book: Wiadomosc) :Observable<Object> {
+    return this.http.patch(`${API_URL}/edytuj`, book, {headers: mojeNaglowkiHTTP})
   }
 }

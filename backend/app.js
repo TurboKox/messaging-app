@@ -28,6 +28,7 @@ app.get('/api/v1/konwersacja', (req, res) => {
     res.status(200).json(wszystkieDokumenty)
   })
 })
+
 app.post('/api/v1/dodaj', (req, res) => {
 
   const dokument = {
@@ -37,7 +38,6 @@ app.post('/api/v1/dodaj', (req, res) => {
     status_dostepnosci: "niedostępny",
     nazwa_uzytkownika: req.body.nazwa_uzytkownika
 }
-  
 DB.insert(dokument, (err, body) => {
   if(err) {
     res.status(500).json({error: `Internal Server Error: ${err.message}`})
@@ -48,6 +48,27 @@ DB.insert(dokument, (err, body) => {
   res.status(200).json({message: 'Dokument dodany'})
   })
 })
+
+app.patch(`/api/v1/edytuj`, (req, res) => {
+  const dokument = {
+    _id: req.body._id,
+    _rev: req.body._rev,
+    tresc_wiadomosci: req.body.tresc_wiadomosci,
+    data_wyslania_wiadomosci: req.body.data_wyslania_wiadomosci,
+    status_wiadomosci: "wysłana",
+    status_dostepnosci: "niedostępny",
+    nazwa_uzytkownika: req.body.nazwa_uzytkownika
+}
+  DB.insert(dokument, (err, body) => {
+    if(err) {
+      res.status(500).json({error: `Internal Server Error: ${err.message}`})
+      return
+    }
+    console.log(`Edytowano wiadomosc`.green)
+    res.status(200).json({message: 'Dokument zaktualizowany'})
+  })
+})
+
 
 app.delete("/api/v1/usun/:id/:rev", (req, res) => {
   const id = req.params.id

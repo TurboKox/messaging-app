@@ -34,6 +34,8 @@ export class CzatComponent {
     this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc).subscribe(
       (res: any) => {
         this.wiadomosci.push({...this.nowaWiadomosc})
+        console.log(this.nowaWiadomosc);
+        console.log(this.wiadomosci);
         console.log('Dodano wiadomosc: ', res)
       },
       (err: { message: string; }) => {

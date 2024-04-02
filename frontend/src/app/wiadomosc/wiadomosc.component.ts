@@ -10,8 +10,11 @@ import { APIService } from '../api.service';
 export class WiadomoscComponent {
   @Input() message: Wiadomosc
   @Output() wiadomoscUsunieta = new EventEmitter<Wiadomosc>()
+  @Output() wiadomoscZaktualizowana = new EventEmitter()
 
   trybEdycji: boolean = false;
+
+  wiadomoscPierwotna: Wiadomosc;
 
   constructor(private mojaUsluga: APIService) {}
 
@@ -29,6 +32,24 @@ export class WiadomoscComponent {
   }
 
   toggleTrybEdycji() {
-    this.trybEdycji = !this.trybEdycji;
+    this.wiadomoscPierwotna = structuredClone(this.message)
+    this.trybEdycji = true;
+  }
+
+  odrzucZmiany() {
+    this.message = this.wiadomoscPierwotna
+    this.trybEdycji = false
+  }
+  zapiszZmiany() {
+    this.mojaUsluga.updateWiadomosc(this.message).subscribe(
+      (res) => {
+        this.wiadomoscZaktualizowana.emit(this.message)
+        this.trybEdycji = false
+      },
+      (err) => {
+        console.error(err)
+      }
+    )
+
   }
 }

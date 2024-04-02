@@ -6,8 +6,8 @@
         <div id="tekstWiadomosci1" *ngIf="trybEdycji">
             <p><input type="text" [(ngModel)]="message.tresc_wiadomosci"></p>
             <div>
-                <button>Zapisz zmiany</button>
-                <button>Odrzuć zmiany</button>
+                <button (click)="zapiszZmiany()">Zapisz zmiany</button>
+                <button (click)="odrzucZmiany()">Odrzuć zmiany</button>
             </div>
         </div>
         <i class="fa-solid fa-pen-to-square" (click)="toggleTrybEdycji()"></i>
