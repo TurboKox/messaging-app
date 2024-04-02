@@ -1,11 +1,13 @@
 #tekstWiadomosci1 {
     background-color: #0075ff;
-    padding-left: 20px;
+    padding: 0px 20px 0px 20px;
     width: 300px;
     color: white;
     font-size: 18px;
     border-radius: 5px;
     box-shadow: 5px 7px 7px 0px rgba(66, 68, 90, 1);
+    overflow: auto;
+    display: flex;
 }
 
 #tekstWiadomosci2 {
@@ -61,16 +63,6 @@ svg {
 
 #dataWyslania2 {
     text-align: right;
-}
-
-.content {
-    z-index: 2000000;
-    position: absolute;
-    top: -80px;
-    right: 350px;
-    padding: 18px 18px;
-    overflow: hidden;
-    background-color: #f1f1f1;
 }
 
 i {

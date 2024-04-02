@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Wiadomosc } from './wiadomosc.model';
+import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-wiadomosc',
@@ -8,12 +9,26 @@ import { Wiadomosc } from './wiadomosc.model';
 })
 export class WiadomoscComponent {
   @Input() message: Wiadomosc
+  @Output() wiadomoscUsunieta = new EventEmitter<Wiadomosc>()
 
-  otwarteMenu: boolean = false;
+  trybEdycji: boolean = false;
 
-  toggleMenu() {
-    this.otwarteMenu = !this.otwarteMenu;
-    console.log(this.otwarteMenu);
-    
+  constructor(private mojaUsluga: APIService) {}
+
+  usunWiadomosc() {
+    if(this.message._id && this.message._rev) {
+      this.mojaUsluga.deleteWiadomosc(this.message._id, this.message._rev).subscribe(
+        (res) => {
+          this.wiadomoscUsunieta.emit(this.message)
+        },
+        (err) => {
+          console.error(err)
+        }
+      )
+    }
+  }
+
+  toggleTrybEdycji() {
+    this.trybEdycji = !this.trybEdycji;
   }
 }

@@ -8,7 +8,7 @@ import { APIService } from '../api.service';
   styleUrl: './czat.component.css'
 })
 export class CzatComponent {
-  wiadomosci: Wiadomosc[] = [ ]
+  wiadomosci: Wiadomosc[] = []
 
   nowaWiadomosc: Wiadomosc = {
     tresc_wiadomosci: '',
@@ -22,7 +22,7 @@ export class CzatComponent {
 
   dodajWiadomosc() {
     var obecna_data = new Date();
-    var m = String(obecna_data.getMinutes());
+    var m = String(obecna_data.getMinutes()).padStart(2, '0');
     var h = String(obecna_data.getHours());
     var dd = String(obecna_data.getDate()).padStart(2, '0');
     var mm = String(obecna_data.getMonth() + 1).padStart(2, '0');
@@ -33,7 +33,6 @@ export class CzatComponent {
 
     this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc).subscribe(
       (res: any) => {
-
         this.wiadomosci.push({...this.nowaWiadomosc})
         console.log('Dodano wiadomosc: ', res)
       },
@@ -42,6 +41,11 @@ export class CzatComponent {
       }
     )
   }
+
+  wiadomoscUsunieta(wiad: Wiadomosc) {
+    this.wiadomosci = this.wiadomosci.filter(w => w !== wiad)
+  }
+
   ngOnInit() {
     this.mojaUsluga.getAllWiadomosci().subscribe(
       (dane) => { this.wiadomosci = dane },

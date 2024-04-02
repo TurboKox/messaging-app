@@ -10,7 +10,7 @@
                 <p>To jest początek tej konwersacji</p>
             </div>
             <div id="resztaKonwersacji" *ngFor="let wiadomosc of wiadomosci">
-                <app-wiadomosc [message]="wiadomosc"></app-wiadomosc>
+                <app-wiadomosc [message]="wiadomosc" (wiadomoscUsunieta)="wiadomoscUsunieta(wiadomosc)"></app-wiadomosc>
             </div>
         </div>
     </div>

@@ -1,10 +1,17 @@
 <div id="parent1" *ngIf="message.nazwa_uzytkownika=='user1'">
     <div id="wiadomosc1">
-        <div id="tekstWiadomosci1">
+        <div id="tekstWiadomosci1" *ngIf="!trybEdycji">
             <p> {{ message.tresc_wiadomosci }}</p>
         </div>
-        <i class="fa-solid fa-pen-to-square"></i>
-        <i class="fa-solid fa-trash"></i>
+        <div id="tekstWiadomosci1" *ngIf="trybEdycji">
+            <p><input type="text" [(ngModel)]="message.tresc_wiadomosci"></p>
+            <div>
+                <button>Zapisz zmiany</button>
+                <button>Odrzuć zmiany</button>
+            </div>
+        </div>
+        <i class="fa-solid fa-pen-to-square" (click)="toggleTrybEdycji()"></i>
+        <i class="fa-solid fa-trash" (click)="usunWiadomosc()"></i>
     </div>
     
     <div id="dataWyslania1">

@@ -36,16 +36,30 @@ app.post('/api/v1/dodaj', (req, res) => {
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
     nazwa_uzytkownika: req.body.nazwa_uzytkownika
+}
+  
+DB.insert(dokument, (err, body) => {
+  if(err) {
+    res.status(500).json({error: `Internal Server Error: ${err.message}`})
+    return
   }
   
-  DB.insert(dokument, (err, body) => {
+  console.log(`Dodano wiadomosc`.green)
+  res.status(200).json({message: 'Dokument dodany'})
+  })
+})
+
+app.delete("/api/v1/usun/:id/:rev", (req, res) => {
+  const id = req.params.id
+  const rev = req.params.rev
+
+  DB.destroy(id, rev, (err, body) => {
     if(err) {
       res.status(500).json({error: `Internal Server Error: ${err.message}`})
       return
     }
     
-    console.log(`Dodano wiadomosc ${dokument.tytul}`.green)
-    res.status(200).json({message: 'Dokument dodany'})
+    res.status(200).json({message: 'Dokument usunięty'})
   })
 })
 

@@ -25,4 +25,8 @@ export class APIService {
   addNewWiadomosc(wiadomosc: Wiadomosc): Observable<Object> {
     return this.http.post<Wiadomosc>(`${API_URL}/dodaj`, wiadomosc, {headers: mojeNaglowkiHTTP})
   }
+
+  deleteWiadomosc(id :string, rev :string) :Observable<Object> {
+    return this.http.delete(`${API_URL}/usun/${id}/${rev}`, {headers: mojeNaglowkiHTTP})
+  }
 }
