@@ -21,6 +21,10 @@ export class CzatComponent {
   constructor(private mojaUsluga: APIService) {}
 
   dodajWiadomosc() {
+    if (this.nowaWiadomosc.tresc_wiadomosci == "") {
+      return;
+    }
+
     var obecna_data = new Date();
     var m = String(obecna_data.getMinutes()).padStart(2, '0');
     var h = String(obecna_data.getHours());
@@ -34,6 +38,7 @@ export class CzatComponent {
     this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc).subscribe(
       (res: any) => {
         this.wiadomosci.push({...this.nowaWiadomosc})
+
         console.log(this.nowaWiadomosc);
         console.log(this.wiadomosci);
         console.log('Dodano wiadomosc: ', res)
