@@ -30,7 +30,6 @@ app.get('/api/v1/konwersacja', (req, res) => {
 })
 
 app.post('/api/v1/dodaj', (req, res) => {
-
   const dokument = {
     tresc_wiadomosci: req.body.tresc_wiadomosci,
     data_wyslania_wiadomosci: req.body.data_wyslania_wiadomosci,
@@ -58,7 +57,7 @@ app.patch(`/api/v1/edytuj`, (req, res) => {
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
     nazwa_uzytkownika: req.body.nazwa_uzytkownika
-}
+  }
   DB.insert(dokument, (err, body) => {
     if(err) {
       res.status(500).json({error: `Internal Server Error: ${err.message}`})

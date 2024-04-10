@@ -31,7 +31,7 @@ export class WiadomoscComponent {
     }
   }
 
-  toggleTrybEdycji() {
+  odpalTrybEdycji() {
     this.wiadomoscPierwotna = structuredClone(this.message)
     this.trybEdycji = true;
   }
@@ -45,6 +45,7 @@ export class WiadomoscComponent {
       (res) => {
         this.wiadomoscZaktualizowana.emit(this.message)
         this.trybEdycji = false
+        window.location.reload();
       },
       (err) => {
         console.error(err)
