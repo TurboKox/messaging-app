@@ -1,19 +1,18 @@
 #tekstWiadomosci1 {
     background-color: #0075ff;
-    padding: 0px 20px 0px 20px;
+    /* padding: 0px 20px 0px 20px; */
     width: 300px;
     color: white;
     font-size: 18px;
     border-radius: 5px;
     box-shadow: 5px 7px 7px 0px rgba(66, 68, 90, 1);
-    overflow: auto;
     display: flex;
 }
 
 #tekstWiadomosci2 {
     background-color: white;
     color: #0075ff;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     width: 300px;
     font-size: 18px;
     border-radius: 5px;
@@ -22,10 +21,10 @@
 
 #wiadomosc1 {
     display: flex;
-    height: 40px;
-    float: right;
+    /* height: 40px; */
+    /* float: right; */
     align-items: center;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     /* margin-bottom: 10px; */
 }
 
@@ -46,14 +45,14 @@ svg {
     display: flex;
     float: right;
     flex-direction: column;
-    margin-bottom: 15px;
+    word-break: break-all;
 }
 
 #parent2 {
     display: flex;
     float: left;
     flex-direction: column;
-    margin-bottom: 15px;
+    word-break: break-all;
 }
 
 #dataWyslania1 {

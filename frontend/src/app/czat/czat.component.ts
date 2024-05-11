@@ -18,9 +18,23 @@ export class CzatComponent {
     nazwa_uzytkownika: "user1"
   }
 
+  // Etap II
+
+  zdjecie :File;
+  dodanoPlik(event :Event) :void {
+    const znacznikInput = event.target as HTMLInputElement
+    if(znacznikInput && znacznikInput.files) {
+      this.zdjecie = znacznikInput.files[0]
+    }
+  }
+
   constructor(private mojaUsluga: APIService) {}
 
   dodajWiadomosc() {
+    if (this.nowaWiadomosc.tresc_wiadomosci == "") {
+      return;
+    }
+
     var obecna_data = new Date();
     var m = String(obecna_data.getMinutes()).padStart(2, '0');
     var h = String(obecna_data.getHours());
@@ -31,9 +45,10 @@ export class CzatComponent {
     
     this.nowaWiadomosc.data_wyslania_wiadomosci = obecna_data_str;
 
-    this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc).subscribe(
+    this.mojaUsluga.addNewWiadomosc(this.nowaWiadomosc, this.zdjecie).subscribe(
       (res: any) => {
         this.wiadomosci.push({...this.nowaWiadomosc})
+
         console.log(this.nowaWiadomosc);
         console.log(this.wiadomosci);
         console.log('Dodano wiadomosc: ', res)
