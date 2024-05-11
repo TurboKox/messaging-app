@@ -23,6 +23,7 @@
 
 <form (submit)="dodajWiadomosc()">
     <div class="wpisanieWiadomosci">
+        <input type="file" name="okladka" id="okladka" (change)="dodanoPlik($event)">
         <input type="text" name="tresc_wiadomosci" id="wiadomosc" [(ngModel)]="nowaWiadomosc.tresc_wiadomosci" placeholder="Wpisz wiadomość...">
         <button onclick="document.getElementById('wiadomosc').value = ''" type="submit" id="wyslij"></button>
     </div>

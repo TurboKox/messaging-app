@@ -7,4 +7,5 @@ export interface Wiadomosc {
     status_wiadomosci: string;
     status_dostepnosci: string;
     nazwa_uzytkownika: "user1" | "user2";
+    zdjecie?: string;
 }

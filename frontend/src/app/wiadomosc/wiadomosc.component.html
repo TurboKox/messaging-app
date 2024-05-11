@@ -2,6 +2,7 @@
     <div id="wiadomosc1" class="col">
         <div id="tekstWiadomosci1" *ngIf="!trybEdycji" class="pt-3 px-4">
             <p> {{ message.tresc_wiadomosci }}</p>
+            <img src="http://localhost:5555/uploads/{{ message.zdjecie }}">
         </div>
         <div id="tekstWiadomosci1" *ngIf="trybEdycji" class="container d-flex flex-column p-3 justify-content-start align-items-center">
             <p><input class="form-control form-control-lg" type="text" [(ngModel)]="message.tresc_wiadomosci"></p>
@@ -12,6 +13,7 @@
         </div>
         <i class="fa-solid fa-pen-to-square" (click)="odpalTrybEdycji()"></i>
         <i class="fa-solid fa-trash" (click)="usunWiadomosc()"></i>
+        
     </div>
     
     <div id="dataWyslania1" class="col mt-1">
@@ -23,6 +25,7 @@
     <div id="wiadomosc2" class="col">
         <div id="tekstWiadomosci2" class="pt-3 px-4">
             <p> {{ message.tresc_wiadomosci }}</p>
+            <img src="http://localhost:5555/uploads/{{ message.zdjecie }}">
         </div>
     </div>
     

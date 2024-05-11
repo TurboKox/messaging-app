@@ -14,8 +14,43 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-
 const DB = nano.use(DB_NAME)
+
+// Etap II
+
+const multer = require('multer')
+const jwt = require('jsonwebtoken')
+const argon = require('argon2')
+
+const UPLOAD_FOLDER = 'uploads'
+const JWT_SEKRET = 'sekret'
+
+const IUser = require('./user.interface')
+
+app.use(`/${UPLOAD_FOLDER}`, express.static(`${UPLOAD_FOLDER}`))
+
+const ustawieniaZapisu = multer.diskStorage({
+  destination: function (req, file, fz) {
+    fz(null, UPLOAD_FOLDER)
+  },
+  filename: function(req, file, fz) {
+    fz(null, `${Date.now()}_${file.originalname}`)
+  },
+})
+
+const upload = multer({
+  storage: ustawieniaZapisu,
+  dest: `${UPLOAD_FOLDER}/`,
+  fileFilter: (req, file, fz) => {
+    if(file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      fz(null, true)
+    } else {
+      fz(new MediaError('Nieprawidłowy format pliku'))
+    }
+  }
+})
+
+//
 
 app.get('/api/v1/konwersacja', (req, res) => {
   DB.list({include_docs: true}, (error, dane) => {
@@ -29,13 +64,18 @@ app.get('/api/v1/konwersacja', (req, res) => {
   })
 })
 
-app.post('/api/v1/dodaj', (req, res) => {
+app.post('/api/v1/dodaj', upload.single("zdjecie"), (req, res) => {
+  const zdjecie = req.file
+
+  console.log(zdjecie.filename);
+
   const dokument = {
     tresc_wiadomosci: req.body.tresc_wiadomosci,
     data_wyslania_wiadomosci: req.body.data_wyslania_wiadomosci,
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
-    nazwa_uzytkownika: req.body.nazwa_uzytkownika
+    nazwa_uzytkownika: req.body.nazwa_uzytkownika,
+    zdjecie: zdjecie.filename
 }
 DB.insert(dokument, (err, body) => {
   if(err) {
