@@ -2,7 +2,7 @@
     <div id="wiadomosc1" class="col">
         <div id="tekstWiadomosci1" *ngIf="!trybEdycji" class="pt-3 px-4">
             <p> {{ message.tresc_wiadomosci }}</p>
-            <img src="http://localhost:5555/uploads/{{ message.zdjecie }}">
+            <img *ngIf="message.zdjecie!='' && message.zdjecie!=undefined" src="http://localhost:5555/uploads/{{ message.zdjecie }}" id="zdjecie">
         </div>
         <div id="tekstWiadomosci1" *ngIf="trybEdycji" class="container d-flex flex-column p-3 justify-content-start align-items-center">
             <p><input class="form-control form-control-lg" type="text" [(ngModel)]="message.tresc_wiadomosci"></p>
@@ -25,7 +25,7 @@
     <div id="wiadomosc2" class="col">
         <div id="tekstWiadomosci2" class="pt-3 px-4">
             <p> {{ message.tresc_wiadomosci }}</p>
-            <img src="http://localhost:5555/uploads/{{ message.zdjecie }}">
+            <img *ngIf="message.zdjecie!='' && message.zdjecie!=undefined" src="http://localhost:5555/uploads/{{ message.zdjecie }}" id="zdjecie">
         </div>
     </div>
     

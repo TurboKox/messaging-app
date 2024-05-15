@@ -65,9 +65,15 @@ app.get('/api/v1/konwersacja', (req, res) => {
 })
 
 app.post('/api/v1/dodaj', upload.single("zdjecie"), (req, res) => {
-  const zdjecie = req.file
-
-  console.log(zdjecie.filename);
+  var photo;
+  if (req.file != undefined)
+  {
+    photo = req.file.filename;
+  }
+  else
+  {
+    photo = "";
+  }
 
   const dokument = {
     tresc_wiadomosci: req.body.tresc_wiadomosci,
@@ -75,7 +81,7 @@ app.post('/api/v1/dodaj', upload.single("zdjecie"), (req, res) => {
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
     nazwa_uzytkownika: req.body.nazwa_uzytkownika,
-    zdjecie: zdjecie.filename
+    zdjecie: photo
 }
 DB.insert(dokument, (err, body) => {
   if(err) {
@@ -89,6 +95,10 @@ DB.insert(dokument, (err, body) => {
 })
 
 app.patch(`/api/v1/edytuj`, (req, res) => {
+
+  var photo = req.file.filename;
+  console.log(photo);
+  
   const dokument = {
     _id: req.body._id,
     _rev: req.body._rev,
@@ -96,7 +106,9 @@ app.patch(`/api/v1/edytuj`, (req, res) => {
     data_wyslania_wiadomosci: req.body.data_wyslania_wiadomosci,
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
-    nazwa_uzytkownika: req.body.nazwa_uzytkownika
+    nazwa_uzytkownika: req.body.nazwa_uzytkownika,
+    zdjecie: photo
+    
   }
   DB.insert(dokument, (err, body) => {
     if(err) {
