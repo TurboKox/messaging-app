@@ -1,1 +1,14 @@
-<app-czat></app-czat>
+<nav>
+    <ng-template [ngIf] = "!(czyZalogowany$ | async)">
+      <a class="btn btn-primary" routerLink="/rejestracja">Rejestracja</a>
+      <a class="btn btn-primary" routerLink="/logowanie">Logowanie</a>
+    </ng-template>
+  
+    <ng-template [ngIf]="(czyZalogowany$ | async)">
+      <a class="btn btn-primary" routerLink="/wylogowanie">Wyloguj</a>
+    </ng-template>
+  
+    <a class="btn btn-primary" routerLink="/czat">Czat</a>
+</nav>
+
+<router-outlet></router-outlet>
