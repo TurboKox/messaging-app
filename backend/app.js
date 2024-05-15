@@ -50,7 +50,7 @@ const upload = multer({
   }
 })
 
-//
+// wiadomosci
 
 app.get('/api/v1/konwersacja', (req, res) => {
   DB.list({include_docs: true}, (error, dane) => {
@@ -64,7 +64,7 @@ app.get('/api/v1/konwersacja', (req, res) => {
   })
 })
 
-app.post('/api/v1/dodaj', upload.single("zdjecie"), (req, res) => {
+app.post('/api/v1/dodaj', weryfikujToken, upload.single("zdjecie"), (req, res) => {
   var photo;
   if (req.file != undefined)
   {
@@ -98,7 +98,7 @@ app.patch(`/api/v1/edytuj`, (req, res) => {
 
   var photo = req.file.filename;
   console.log(photo);
-  
+
   const dokument = {
     _id: req.body._id,
     _rev: req.body._rev,
@@ -135,6 +135,65 @@ app.delete("/api/v1/usun/:id/:rev", (req, res) => {
   })
 })
 
+// użytkownicy
+
+app.post(`/api/v1/login`, async (req, res) => {
+  const {login, password} = req.body
+
+  try {
+    const user = await IUser.findUserByUsername(login)
+    if(!user) {
+      return res.status(404).json({message: "Nie znaleziono użytkownika"})
+    }
+
+    const czyTakieSame = await argon.verify(user.password, password)
+    if(!czyTakieSame) {
+      return res.status(401).json({message: "Błędne hasło"})
+    }
+
+    const token = jwt.sign({userId: user._id, login: user.login}, JWT_SEKRET, { expiresIn: '1h'})
+    res.status(200).json({token})
+
+  } catch(e) {
+    return res.status(500).json({message: `Wewnątrzny błąd serwera: ${e}`})
+  }
+})
+
+app.post(`/api/v1/register`, async (req, res) => {
+  const {login, password} = req.body
+  
+  try {
+    const hashPassword = await argon.hash(password)
+
+    const nowyUser = {login, password: hashPassword}
+
+    await IUser.createUser(nowyUser)
+
+    res.status(201).json({message: `Konto o nazwie '${login}' zostało stworzone`})
+  } catch(e) {
+    res.status(500).json({message: `Wewnątrzny błąd serwera ${e}`})
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Serwer działa na adresie http://localhost:${PORT}`.underline.blue)
 })
+
+function weryfikujToken(req, res, next) {
+
+  const token = req.get('Authorization')
+
+  if(!token) {
+    return res.status(401).json({message: "Brak autoryzacji: Brak JWT"})
+  }
+
+  try {
+    const zdekodowanyToken = jwt.verify(token.split(' ')[1], JWT_SEKRET)
+    req.user = zdekodowanyToken
+    next()
+  } catch(e) {
+    return res.status(401).json({message: `Brak autoryzacji: ${e}`})
+  }
+
+}
+

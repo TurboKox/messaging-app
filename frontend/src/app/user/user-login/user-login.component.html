@@ -1,1 +1,11 @@
-<p>user-login works!</p>
+<form (submit)="zaloguj()">
+    <div class="form-kontener">
+      <label for="login">Login</label>
+      <input type="text" name="login" id="login" [(ngModel)]="login" required>
+  
+      <label for="password">Hasło</label>
+      <input type="password" name="password" id="password" [(ngModel)]="password" required>
+  
+      <button class="btn" type="submit">Zaloguj</button>
+    </div>
+  </form>

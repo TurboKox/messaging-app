@@ -14,15 +14,23 @@ const mojeNaglowkiHTTP = new HttpHeaders({
   providedIn: 'root'
 })
 
-
 export class APIService {
-  constructor(private http: HttpClient) { }
+  private token :string | null
+
+  constructor(private http :HttpClient) {
+    this.token = localStorage.getItem('token')
+  }
 
   getAllWiadomosci() :Observable<Wiadomosc[]> {
     return this.http.get<Wiadomosc[]>(`${API_URL}/konwersacja`, {headers: mojeNaglowkiHTTP})
   } 
   
   addNewWiadomosc(wiadomosc: Wiadomosc, photo: File): Observable<Object> {
+
+    if(!this.token) {
+      throw new Error('Użytkownik nie jest zalogowany')
+    }
+
     const formData = new FormData()
 
     formData.append('tresc_wiadomosci', wiadomosc.tresc_wiadomosci)
@@ -31,6 +39,8 @@ export class APIService {
     formData.append('status_dostepnosci', (wiadomosc.status_dostepnosci))
     formData.append('status_wiadomosci', (wiadomosc.status_wiadomosci))
     formData.append('zdjecie', photo)
+
+    const naglowekJWT = mojeNaglowkiHTTP.append('Authorization', `Bearer ${this.token}`)
 
     return this.http.post<Wiadomosc>(`${API_URL}/dodaj`, formData, {headers: mojeNaglowkiHTTP})
   }

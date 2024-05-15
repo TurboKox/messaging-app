@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selektorCzyZalogowany } from './magazyn/user-selectors';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  czyZalogowany$ :Observable<boolean>
+
+  constructor(
+    private magazyn :Store
+  ) {}
+
+  ngOnInit() :void {
+    this.czyZalogowany$ = this.magazyn.select(selektorCzyZalogowany)
+  }
 }
