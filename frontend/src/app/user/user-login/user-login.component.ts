@@ -24,7 +24,7 @@ export class UserLoginComponent {
     }
     this.autoryzacja.loginUser(daneLogowania).subscribe(
       () => {
-        this.trasownik.navigate(['/'])
+        this.trasownik.navigate(['/czat'])
       },
       (e) => {
         console.error(e)

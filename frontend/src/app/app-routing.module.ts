@@ -5,7 +5,7 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "czat", component: CzatComponent },
   { path: "rejestracja", component: UserRegisterComponent},
   { path: "logowanie", component: UserLoginComponent},

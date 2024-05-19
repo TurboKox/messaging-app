@@ -45,7 +45,6 @@ export class WiadomoscComponent {
       (res) => {
         this.wiadomoscZaktualizowana.emit(this.message)
         this.trybEdycji = false
-        window.location.reload();
       },
       (err) => {
         console.error(err)

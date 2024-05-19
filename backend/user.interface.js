@@ -1,7 +1,7 @@
 require('dotenv').config()
 const nano = require('nano')(`http://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@localhost:5984`)
 
-const DB_NAME = 'uzytkownicy'
+const DB_NAME = 'uzytkownicy-app'
 
 const DB = nano.use(DB_NAME)
 
