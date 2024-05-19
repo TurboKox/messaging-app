@@ -1,11 +1,13 @@
 <nav>
     <ng-template [ngIf] = "!(czyZalogowany$ | async)">
-      <a class="btn btn-primary" routerLink="/rejestracja">Rejestracja</a>
-      <a class="btn btn-primary" routerLink="/logowanie">Logowanie</a>
+      <div>
+        <a class="btn btn-primary mx-2 mt-2" routerLink="/rejestracja">Rejestracja</a>
+        <a class="btn btn-primary mt-2" routerLink="/logowanie">Logowanie</a>
+      </div>
     </ng-template>
   
     <ng-template [ngIf]="(czyZalogowany$ | async)">
-      <a class="btn btn-primary" routerLink="/wylogowanie">Wyloguj</a>
+      <a class="btn btn-primary mt-2 mx-2" routerLink="/wylogowanie">Wyloguj</a>
     </ng-template>
 </nav>
 
