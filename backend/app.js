@@ -95,10 +95,6 @@ DB.insert(dokument, (err, body) => {
 })
 
 app.patch(`/api/v1/edytuj`, (req, res) => {
-
-  var photo = req.file.filename;
-  console.log(photo);
-
   const dokument = {
     _id: req.body._id,
     _rev: req.body._rev,
@@ -107,8 +103,6 @@ app.patch(`/api/v1/edytuj`, (req, res) => {
     status_wiadomosci: "wysłana",
     status_dostepnosci: "niedostępny",
     nazwa_uzytkownika: req.body.nazwa_uzytkownika,
-    zdjecie: photo
-    
   }
   DB.insert(dokument, (err, body) => {
     if(err) {
@@ -180,7 +174,6 @@ app.listen(PORT, () => {
 })
 
 function weryfikujToken(req, res, next) {
-
   const token = req.get('Authorization')
 
   if(!token) {

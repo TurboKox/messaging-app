@@ -8,7 +8,7 @@ import { selektorCzyZalogowany } from './magazyn/user-selectors';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
 
   czyZalogowany$ :Observable<boolean>

@@ -42,7 +42,7 @@ export class APIService {
 
     const naglowekJWT = mojeNaglowkiHTTP.append('Authorization', `Bearer ${this.token}`)
 
-    return this.http.post<Wiadomosc>(`${API_URL}/dodaj`, formData, {headers: mojeNaglowkiHTTP})
+    return this.http.post<Wiadomosc>(`${API_URL}/dodaj`, formData, {headers: naglowekJWT})
   }
 
   deleteWiadomosc(id: string, rev: string) :Observable<Object> {

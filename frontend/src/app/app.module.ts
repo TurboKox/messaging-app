@@ -12,6 +12,13 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 
+import { APIService } from './api.service';
+import { provideRouter } from '@angular/router';
+import { routes } from './app-routing.module';
+import { userReduktor } from './magazyn/user-reducers';
+import { AuthService } from './auth.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +33,13 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({user: userReduktor})
   ],
-  providers: [],
+  providers: [
+    provideRouter(routes),
+    APIService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
